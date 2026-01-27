@@ -38,3 +38,24 @@
 - Estabelecer um limite de 10 transações diárias para uma conta;
 - Se o Usuário tentar fazer uma transação após atingir o limite, deve ser informado que ele excedeu o número de transações permitidas para aquele dia;
 - Mostre o Extrato, a data e hora de todas as alterações.
+
+
+## 3 - Versão
+- Esta versão do Sys Bank marca a transição completa de um script procedural (baseado em dicionários) para uma arquitetura Orientada a Objetos (POO). O sistema agora utiliza conceitos de Abstração, Herança e Polimorfismo para gerenciar contas e transações.
+
+### Estrutura do Código
+#### A. Modelagem de Dados (Classes)
+ - Cliente & PessoaFisica: O cliente agora é um objeto que possui uma lista de contas. A senha é armazenada diretamente na instância do cliente.
+
+ - Conta & ContaCorrente: Gerenciam o saldo e as regras de saque. A ContaCorrente estende a funcionalidade básica adicionando limites de valor e de quantidade de saques.
+
+ - Transacao (Interface): Uma classe abstrata (ABC) que define o contrato para as operações de Saque e Deposito.
+
+ - Historico: Cada conta possui seu próprio histórico, que registra os detalhes de cada transação com data e hora.
+
+#### B. Fluxo de Operações
+ - Cadastro: Cria um objeto PessoaFisica e vincula a ele uma ContaCorrente automaticamente.
+
+ - Login: Localiza o objeto do cliente na lista global através do CPF e valida a senha.
+
+ - Transação: O menu chama o método realizar_transacao do cliente, passando o objeto da transação (Saque ou Deposito).
